@@ -13,7 +13,8 @@ data class Post(
 data class Story(
   val image: String,
   val name: String,
-  val isSeen: Boolean = false
+  val isSeen: Boolean = false,
+
 )
 
 val names = arrayOf(
@@ -27,4 +28,17 @@ val names = arrayOf(
     "matdo",
     "phillsohn",
     "deitch"
+)
+
+val fullnames = arrayOf(
+    "Storee Whitfield",
+    "Nianyc Castellanos",
+    "Opioke Harrington",
+    "Ashoke Vanderbilt",
+    "Dark Emarlds Nightingale",
+    "Bedtan Moreau",
+    "Shrish Endicott",
+    "Matdo Beaumont",
+    "Phillsohn Cartwright",
+    "Deitch Everwood"
 )
