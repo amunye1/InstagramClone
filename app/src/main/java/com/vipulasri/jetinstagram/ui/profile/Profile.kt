@@ -5,12 +5,17 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 
+
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -50,6 +55,14 @@ fun  ProfileScreen(modifier: Modifier = Modifier) {
         Column {
             ProfileImageWithText(stories = stories)
             TextBelowImage(stories = stories)
+            Row(modifier= Modifier
+                .padding(16.dp)
+                ){
+
+               ProfileButtons()
+            }
+
+
         }
 
     }
@@ -134,10 +147,58 @@ fun ProfileImageWithText(stories: List<Story>){
 
 @Composable
 fun TextBelowImage(stories: List<Story>){
-    Column (modifier = Modifier.padding(16.dp)
+    Column (modifier = Modifier
+        .padding(16.dp)
         .height(56.dp)){
         Text(text = "${stories.first().name}  placeholder")
         Text(text = "Personal Blog", fontStyle = FontStyle.Italic , color = Color.Gray )
     }
 
 }
+
+@Composable
+fun ProfileButtons(){
+
+    Row(modifier= Modifier
+        .fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Button(
+            onClick = { },
+            modifier = Modifier.
+            fillMaxWidth().weight(1f).padding(8.dp)
+
+
+        ) {
+            Text(text = "Edit Profile")
+        }
+
+
+
+        Button(
+            onClick = { },
+            modifier = Modifier.
+            fillMaxWidth().weight(1f).padding(8.dp)
+
+
+        ) {
+            Text(text = "Promotion")
+        }
+
+
+        Button(
+            onClick = { },
+            modifier = Modifier.
+            fillMaxWidth().weight(1f).padding(8.dp)
+
+
+        ) {
+            Text(text = "Email")
+        }
+
+    }
+
+
+
+}
+
