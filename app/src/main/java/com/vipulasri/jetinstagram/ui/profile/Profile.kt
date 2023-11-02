@@ -106,7 +106,7 @@ fun TextButtonExample(onClick: () -> Unit, stories: List<Story>) {
     ) {
 
 
-        Text(if (stories.isNotEmpty()) stories.first().name else "No stories", fontSize = 30.sp)
+        Text(if (stories.isNotEmpty()) stories.first().name else "No stories")
         Icon(
 
             painter= painterResource(id = R.drawable.ic_donward_facing_arrow),
@@ -126,18 +126,18 @@ fun ProfileImageWithText(stories: List<Story>){
         StoryImage(imageUrl = stories.first().image)
         Spacer(modifier = Modifier.width(24.dp))
         Column(horizontalAlignment = Alignment.CenterHorizontally){
-            Text(text = "1", fontSize = 20.sp, textAlign = TextAlign.Center)
-            Text(text = "Posts", fontSize = 20.sp)
+            Text(text = "1",  textAlign = TextAlign.Center)
+            Text(text = "Posts")
         }
         Spacer(modifier = Modifier.width(20.dp))
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = "54" , fontSize = 20.sp, textAlign = TextAlign.Center)
-            Text(text = "Followers", fontSize = 20.sp)
+            Text(text = "54" , textAlign = TextAlign.Center)
+            Text(text = "Followers")
         }
         Spacer(modifier = Modifier.width(20.dp))
         Column(horizontalAlignment = Alignment.CenterHorizontally){
-            Text(text = "81", fontSize = 20.sp, textAlign = TextAlign.Center)
-            Text(text = "Following", fontSize = 20.sp)
+            Text(text = "81",  textAlign = TextAlign.Center)
+            Text(text = "Following")
         }
 
         
@@ -166,11 +166,12 @@ fun ProfileButtons(){
         Button(
             onClick = { },
             modifier = Modifier.
-            fillMaxWidth().weight(1f).padding(8.dp)
+            fillMaxWidth().weight(1f).padding(8.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black)
 
 
         ) {
-            Text(text = "Edit Profile")
+            Text(text = "Edit Profile", color = Color.White)
         }
 
 
@@ -178,22 +179,27 @@ fun ProfileButtons(){
         Button(
             onClick = { },
             modifier = Modifier.
-            fillMaxWidth().weight(1f).padding(8.dp)
+            fillMaxWidth().weight(1f).padding(8.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black)
+
 
 
         ) {
-            Text(text = "Promotion")
+            Text(text = "Promotion", color = Color.White)
         }
 
 
         Button(
             onClick = { },
             modifier = Modifier.
-            fillMaxWidth().weight(1f).padding(8.dp)
+            fillMaxWidth().weight(1f).padding(8.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black)
+
+
 
 
         ) {
-            Text(text = "Email")
+            Text(text = "Email", color = Color.White)
         }
 
     }
