@@ -58,7 +58,7 @@ fun  ProfileScreen(modifier: Modifier = Modifier) {
             Row(modifier= Modifier
                 .padding(16.dp)
                 ){
-
+                //shows the profile buttons
                ProfileButtons()
             }
 
