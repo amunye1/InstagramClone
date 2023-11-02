@@ -4,10 +4,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
@@ -22,7 +24,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vipulasri.jetinstagram.R
@@ -31,6 +35,8 @@ import com.vipulasri.jetinstagram.model.Story
 import com.vipulasri.jetinstagram.ui.components.icon
 import com.vipulasri.jetinstagram.ui.favorite.SearchTextField
 import com.vipulasri.jetinstagram.ui.favorite.StoriesSection
+import com.vipulasri.jetinstagram.ui.home.StoryImage
+import java.time.format.TextStyle
 
 @Composable
 fun  ProfileScreen(modifier: Modifier = Modifier) {
@@ -42,8 +48,8 @@ fun  ProfileScreen(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.padding(20.dp))
 
         Column {
-
-
+            ProfileImageWithText(stories = stories)
+            TextBelowImage(stories = stories)
         }
 
     }
@@ -77,7 +83,7 @@ private fun Toolbar(stories: List<Story>) {
 }
 
 @Composable
-fun TextButtonExample(onClick: () -> Unit, stories: List<Story>,) {
+fun TextButtonExample(onClick: () -> Unit, stories: List<Story>) {
     TextButton(
         onClick = { onClick() },
         colors = ButtonDefaults.buttonColors(
@@ -96,4 +102,42 @@ fun TextButtonExample(onClick: () -> Unit, stories: List<Story>,) {
         )
 
     }
+}
+@Composable
+fun ProfileImageWithText(stories: List<Story>){
+    Row (
+        modifier = Modifier.padding(8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ){
+
+        StoryImage(imageUrl = stories.first().image)
+        Spacer(modifier = Modifier.width(24.dp))
+        Column(horizontalAlignment = Alignment.CenterHorizontally){
+            Text(text = "1", fontSize = 20.sp, textAlign = TextAlign.Center)
+            Text(text = "Posts", fontSize = 20.sp)
+        }
+        Spacer(modifier = Modifier.width(20.dp))
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(text = "54" , fontSize = 20.sp, textAlign = TextAlign.Center)
+            Text(text = "Followers", fontSize = 20.sp)
+        }
+        Spacer(modifier = Modifier.width(20.dp))
+        Column(horizontalAlignment = Alignment.CenterHorizontally){
+            Text(text = "81", fontSize = 20.sp, textAlign = TextAlign.Center)
+            Text(text = "Following", fontSize = 20.sp)
+        }
+
+        
+        
+    }
+}
+
+@Composable
+fun TextBelowImage(stories: List<Story>){
+    Column (modifier = Modifier.padding(16.dp)
+        .height(56.dp)){
+        Text(text = "${stories.first().name}  placeholder")
+        Text(text = "Personal Blog", fontStyle = FontStyle.Italic , color = Color.Gray )
+    }
+
 }
