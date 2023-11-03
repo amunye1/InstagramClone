@@ -2,6 +2,8 @@ package com.vipulasri.jetinstagram.ui.profile
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -11,11 +13,17 @@ import androidx.compose.foundation.layout.Row
 
 
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -44,8 +52,11 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
 import com.vipulasri.jetinstagram.R
+import com.vipulasri.jetinstagram.data.PostsRepository
 import com.vipulasri.jetinstagram.data.StoriesRepository
+import com.vipulasri.jetinstagram.model.Post
 import com.vipulasri.jetinstagram.model.Story
 import com.vipulasri.jetinstagram.ui.components.icon
 import com.vipulasri.jetinstagram.ui.home.StoryImage
@@ -53,7 +64,7 @@ import com.vipulasri.jetinstagram.ui.home.StoryImage
 @Composable
 fun  ProfileScreen(modifier: Modifier = Modifier) {
 
-
+    val posts by PostsRepository.posts
     val stories by StoriesRepository.observeStories()
     Scaffold(topBar = { Toolbar(stories) }){it
 
@@ -68,7 +79,8 @@ fun  ProfileScreen(modifier: Modifier = Modifier) {
             ProfileButtons()
             ExpandableText()
             StoriesSection2(stories =stories)
-            TabsDisplayed()
+            TabsDisplayed(posts)
+
         }
 
     }
@@ -278,8 +290,9 @@ private fun StoriesList(stories: List<Story>) {
 
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun TabsDisplayed() {
+fun TabsDisplayed(post: List<Post>) {
     var selectedTabIndex by remember { mutableStateOf(0) }
     val tabItems = listOf<TabItem>(
         TabItem(
@@ -318,7 +331,41 @@ fun TabsDisplayed() {
                 }
             )
         }
+
+
     }
+
+
+
+            when (selectedTabIndex) {
+                0 -> {
+                    // Content for Tab 1
+                    LazyVerticalGrid(cells = GridCells.Fixed(3), content ={
+                        items(post.size) { index ->
+                            val postImage = post[index].image
+
+                            Image(
+                                painter = rememberImagePainter(data = postImage),
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .aspectRatio(1f)
+                                    .fillMaxWidth()
+                                    .fillMaxHeight()
+
+                            )
+                        }
+                    } )
+                }
+
+                1 -> {
+                    // Content for Tab 2
+                    Text("Content for Tab 2")
+                }
+            }
+
+
+
+
 }
 
 
