@@ -9,6 +9,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 
 
@@ -18,6 +19,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.GridCells
@@ -348,11 +350,15 @@ fun TabsDisplayed(post: List<Post>) {
                                 painter = rememberImagePainter(data = postImage),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .aspectRatio(1f)
+                                    .aspectRatio(1.35f)
+
                                     .fillMaxWidth()
                                     .fillMaxHeight()
 
+
                             )
+
+                            Spacer(modifier = Modifier.heightIn(100.dp))
                         }
                     } )
                 }
@@ -362,10 +368,6 @@ fun TabsDisplayed(post: List<Post>) {
                     Text("Content for Tab 2")
                 }
             }
-
-
-
-
 }
 
 
